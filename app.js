@@ -3,6 +3,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session');
+const passport = require('passport');
+const MongoStore = require('connect-mongo');
+
+require('dotenv').config();
 
 //IMPORT ROUTERS
 const indexRouter = require('./routes/index');
@@ -27,6 +32,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//SESSION MIDDLEWARE
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }), //use session store
+  })
+);
+app.use(passport.session());
 
 //ROUTERS
 app.use('/', indexRouter);
