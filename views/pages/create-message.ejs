@@ -29,25 +29,20 @@
               maxlength="280"
               required
               class="form-control"
-              <%if (typeof isAuthenticated !== 'undefined') {%>
                 <%= isAuthenticated ? '' : 'disabled'%>
-            <%}%>
             ></textarea>
             <button class="btn btn-sm btn-outline-primary mt-2"
-            <%if (typeof isAuthenticated !== 'undefined') {%>
                 <%= isAuthenticated ? '' : 'disabled'%>
-            <%}%>
             >Submit</button>
           </form>
         </div>
-        <% if(typeof isAuthenticated !== 'undefined') { %> <%if(isAuthenticated
-        === false) {%>
+        <%if(isAuthenticated === false) {%>
         <div class="col-12">
           <div class="alert alert-warning mt-3" role="alert">
             Please log in to create a message
           </div>
         </div>
-        <%}%> <%}%>
+        <%}%> 
         <% if(typeof errors !== 'undefined') { %> <% errors.forEach((error) => {
       %>
       <div class="alert alert-warning mt-3" role="alert"><%= error.msg %></div>

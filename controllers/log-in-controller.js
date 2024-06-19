@@ -45,3 +45,12 @@ exports.login_post = [
     })(req, res, next);
   },
 ];
+
+exports.logout_get = function (req, res, next) {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/'); //MAYBE CHANGE
+  });
+};
