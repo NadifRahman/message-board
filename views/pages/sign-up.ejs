@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/head') %>
+  <body>
+    <%- include('../partials/nav') %>
+    <div
+      class="container-sm mt-3 shadow"
+      style="max-width: 700px; border-radius: 5px; padding: 10px"
+    >
+      <form action="" method="post">
+        <div class="mb-3">
+          <label for="first_name" class="form-label">First Name</label>
+          <input type="text" name="first_name" id="first_name"
+          class="form-control" maxlength="20" required <% //value %> value="<%=
+          typeof testUser !== 'undefined' ? testUser.first_name : ""%>" />
+        </div>
+        <div class="mb-3">
+          <label for="last_name" class="form-label">Last Name</label>
+          <input type="text" name="last_name" id="last_name"
+          class="form-control" maxlength="20" required value="<%= typeof
+          testUser !== 'undefined' ? testUser.last_name : ""%>" />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" id="email" class="form-control"
+          required value="<%= typeof testUser !== 'undefined' ? testUser.email :
+          ""%>" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="mb-3 d-flex">
+          <button
+            type="submit"
+            class="btn btn-primary btn-sm"
+            style="margin-left: auto"
+          >
+            Create Account
+          </button>
+        </div>
+      </form>
+      <% if(typeof errors !== 'undefined') { %> <% errors.forEach((error) => {
+      %>
+      <div class="alert alert-warning" role="alert"><%= error.msg %></div>
+
+      <%})%> <% } %>
+    </div>
+  </body>
+</html>
