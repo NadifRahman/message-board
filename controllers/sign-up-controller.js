@@ -44,6 +44,16 @@ exports.signup_post = [
       hashedPassword: req.body.password, //NOT HASHED
     });
 
+    const userExists = await User.exists({ email: req.body.email }); //attempt to find if document with email exists
+
+    if (userExists) {
+      console.log('User exists');
+      errors.errors.push({ msg: 'User with email already exists' }); //push an error to array
+    }
+
+    console.log(errors.errors);
+    console.log(errors.isEmpty());
+
     if (!errors.isEmpty()) {
       console.log('There are errors in creating');
       res.render('pages/sign-up', {

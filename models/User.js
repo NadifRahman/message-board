@@ -9,7 +9,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'], //uses regex for email
+    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address'], //uses regex for email,
   },
   hashedPassword: {
     type: String,
