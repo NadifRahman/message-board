@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../partials/head') %>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="container mt-3">
+      <%if (!isAuthenticated) {%>
+      <div class="alert alert-warning mt-3" role="alert">
+        Please log in to see authors
+      </div>
+      <%}%> <% if(posts && posts.length > 0) {%> <% posts.forEach((post)=> {%>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= isAuthenticated? post.author.fullname : "Anonymous User" %>
+          </h4>
+          <h6 class="card-subtitle"><%= post.readableDate %></h6>
+          <p class="card-text"><%= post.msg %></p>
+        </div>
+      </div>
+      <% }) %> <% } else {%>
+      <h1>
+        There are no posts yet. Go ahead and
+        <a href="create-message">make one!</a>
+      </h1>
+      <%}%>
+    </div>
+  </body>
+</html>
