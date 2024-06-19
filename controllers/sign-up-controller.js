@@ -47,15 +47,10 @@ exports.signup_post = [
     const userExists = await User.exists({ email: req.body.email }); //attempt to find if document with email exists
 
     if (userExists) {
-      console.log('User exists');
       errors.errors.push({ msg: 'User with email already exists' }); //push an error to array
     }
 
-    console.log(errors.errors);
-    console.log(errors.isEmpty());
-
     if (!errors.isEmpty()) {
-      console.log('There are errors in creating');
       res.render('pages/sign-up', {
         headtitle: 'Message Board Sign-up',
         testUser: testUser,
@@ -74,8 +69,8 @@ exports.signup_post = [
             hashedPassword: hashedPassword, //HASHED
           });
           const result = newUser.save(); //SAVE TO DATABASE
-          console.log('made new user');
-          res.redirect('/'); //CHANGE REDIRECT LATER
+
+          res.redirect('/users/log-in');
         } catch (err) {
           return next(errors);
         }

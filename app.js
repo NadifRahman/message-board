@@ -6,6 +6,8 @@ const logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
+const compression = require('compression');
+const helmet = require('helmet');
 
 require('dotenv').config();
 
@@ -15,6 +17,15 @@ const usersRouter = require('./routes/users');
 
 //CREATE APP
 const app = express();
+
+//Limiter
+const RateLimit = require('express-rate-limit');
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 60,
+  message: 'Too many requests, please wait',
+}); //1 minute window, max 80 requests per min
+app.use(limiter);
 
 //CONFIG THE DATABASE
 require('./config/database.js');
@@ -31,6 +42,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(helmet());
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //SESSION MIDDLEWARE
@@ -67,11 +80,12 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  res.locals.statusCode = err.status;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { headtitle: 'ERROR' });
 });
 
 module.exports = app;

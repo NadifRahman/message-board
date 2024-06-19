@@ -27,7 +27,6 @@ exports.login_post = [
       }
 
       if (!user) {
-        console.log('fail to log in');
         return res.render('pages/log-in', {
           headtitle: 'Message board log-in',
           testUser: { email: req.body.email },
@@ -39,8 +38,8 @@ exports.login_post = [
           return next(err);
         }
         // Handle success - e.g., redirect to home page
-        console.log('log in sucessful');
-        return res.redirect('/'); //CHANGE THIS LATER
+
+        return res.redirect('/');
       });
     })(req, res, next);
   },
@@ -51,6 +50,6 @@ exports.logout_get = function (req, res, next) {
     if (err) {
       return next(err);
     }
-    res.redirect('/'); //MAYBE CHANGE
+    res.redirect('/');
   });
 };

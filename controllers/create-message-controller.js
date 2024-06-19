@@ -42,6 +42,6 @@ exports.createMessage_post = [
     });
 
     await newPost.save();
-    res.redirect('/'); //CHANGE THIS TO REDIRECT TO MESSAGE BOARD
+    res.redirect('/message-board');
   }),
 ];

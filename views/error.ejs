@@ -1,3 +1,17 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/nav') %>
+    <div class="container mt-3">
+      <h1><%= message %></h1>
+      <h2><%= `Status code: ${statusCode}` %></h2>
+      <pre><%= error.stack %></pre>
+      <img
+        src="/images/errorcat.jpg"
+        alt="A cat hat has tears while holding up a thumbs up"
+        style="max-height: 30vh"
+      />
+    </div>
+  </body>
+</html>
