@@ -9,18 +9,6 @@
     >
       <form action="" method="post">
         <div class="mb-3">
-          <label for="first_name" class="form-label">First Name</label>
-          <input type="text" name="first_name" id="first_name"
-          class="form-control" maxlength="20" required <% //value %> value="<%=
-          typeof testUser !== 'undefined' ? testUser.first_name : ""%>" />
-        </div>
-        <div class="mb-3">
-          <label for="last_name" class="form-label">Last Name</label>
-          <input type="text" name="last_name" id="last_name"
-          class="form-control" maxlength="20" required value="<%= typeof
-          testUser !== 'undefined' ? testUser.last_name : ""%>" />
-        </div>
-        <div class="mb-3">
           <label for="email" class="form-label">Email</label>
           <input type="email" name="email" id="email" class="form-control"
           required value="<%= typeof testUser !== 'undefined' ? testUser.email :
@@ -38,14 +26,14 @@
         </div>
         <div class="mb-3 d-flex">
           <small
-            >Already have an account? <a href="/users/log-in">Log in</a></small
+            >Don't have an account? <a href="/users/sign-up">Sign up</a></small
           >
           <button
             type="submit"
             class="btn btn-primary btn-sm"
             style="margin-left: auto"
           >
-            Create Account
+            Log in
           </button>
         </div>
       </form>
