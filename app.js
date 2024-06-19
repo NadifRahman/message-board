@@ -47,6 +47,13 @@ app.use(passport.session());
 //PASSPORT CONFIG
 require('./config/passport.js');
 
+//SET LOCAL RESPONSE VARIABLE
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.currentUser = req.user;
+  next();
+});
+
 //ROUTERS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

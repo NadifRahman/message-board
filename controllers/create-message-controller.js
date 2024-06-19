@@ -6,7 +6,6 @@ const Post = require('../models/Post');
 exports.createMessage_get = function (req, res, next) {
   res.render('pages/create-message', {
     headtitle: 'Message Board Create Message',
-    isAuthenticated: req.isAuthenticated(),
   });
 };
 
@@ -25,7 +24,6 @@ exports.createMessage_post = [
     if (!req.isAuthenticated()) {
       res.render('pages/create-message', {
         headtitle: 'Message Board Create Message',
-        isAuthenticated: false,
       });
       return;
     }
