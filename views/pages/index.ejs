@@ -3,10 +3,36 @@
   <%- include('../partials/head') %>
   <body>
     <%- include('../partials/nav') %>
-    <div class="container">
-      <h1><%= title %></h1>
-      <p>Welcome to <%= title %></p>
-      <button class="btn btn-primary btn-sm">Hi</button>
+    <div class="container mt-5">
+      <div class="jumbotron text-center">
+        <h1 class="display-4">
+          <%= isAuthenticated? `Welcome back, ${currentUser.fullname}` :
+          "Welcome to Message Board!"%>
+        </h1>
+        <p class="lead">
+          Your one-stop solution to share and discuss messages.
+        </p>
+        <hr class="my-4" />
+        <p>Navigate to different sections of the site using the links below:</p>
+        <a class="btn btn-primary btn-lg" href="/message-board" role="button"
+          >View Messages</a
+        >
+        <a class="btn btn-secondary btn-lg" href="/create-message" role="button"
+          >Create a Message</a
+        >
+        <% if (!isAuthenticated) { %>
+        <a class="btn btn-success btn-lg" href="/users/sign-up" role="button"
+          >Sign Up</a
+        >
+        <a class="btn btn-info btn-lg" href="/users/log-in" role="button"
+          >Log In</a
+        >
+        <% } else { %>
+        <a class="btn btn-danger btn-lg" href="/users/log-out" role="button"
+          >Log Out</a
+        >
+        <% } %>
+      </div>
     </div>
   </body>
 </html>
